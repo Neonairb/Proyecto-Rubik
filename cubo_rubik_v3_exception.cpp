@@ -4,12 +4,14 @@ using namespace std;
 int pasos[1000];
 int counter=0;
 
-void displayMenu();
+void displayMenu(int color);
 void ptrPasosSinNotacion();
 void ptrPasosConNotacion();
 void wrtFace(int *arr);
 void ptrFace(int *arr);
 int pasosRepetidos(int p[1000], int s[500]);
+void face(string p[9]);
+bool isValidInt(string valid_numeroEnCadena);
 
 struct Cube
 {
@@ -28,17 +30,11 @@ struct Cube
 		}
 	    setlocale(LC_CTYPE, "Spanish");
 
-	    cout<<"Cara Blanca (se mira poniendo la cara az�l debajo):"<<endl;
 		wrtFace(white);
-		cout<<"Cara Az�l (Teniendo la cara blanca arriba):"<<endl;
 		wrtFace(blue);
-		cout<<"Cara Naranja (Teniendo la cara blanca arriba):"<<endl;
 		wrtFace(orange);
-		cout<<"Cara Verde (Teniendo la cara blanca arriba):"<<endl;
 		wrtFace(green);
-		cout<<"Cara Rojo (Teniendo la cara blanca arriba):"<<endl;
 		wrtFace(red);
-		cout<<"Cara Amarilla (Teniendo la cara azul arriba):"<<endl;
 		wrtFace(yellow);
 	}
 	void rotRightDown()
@@ -1111,7 +1107,9 @@ int main()
 {
     setlocale(LC_CTYPE, "Spanish");
     int option=0;
-    displayMenu();
+    cout<<"Bienvenido a SYC un programa que te indica c�mo resolver tu cubo Rubik paso por paso\n"<<endl
+        <<"Para resolver tu cubo necesitas indicarme la posici�n de los colores en las caras, recuerda que el color de la cara es indicado por el color del centro de la misma, a continuaci�n,veras una r�brica de como debes representar los colores:\n"<<endl
+        <<"El orden de los colores se representa de arriba hacia abajo de izquierda a derecha como se indica a continuaci�n"<<endl;
     Cube micubo;
     micubo.solveCube();
     //micubo.prtCube();
@@ -1134,36 +1132,132 @@ int main()
     }
     return 0;
 }
-void displayMenu()
+void displayMenu(int color)
 {
     setlocale(LC_CTYPE, "Spanish");
-    cout<<"Bienvenido a SYC un programa que te indica c�mo resolver tu cubo Rubik paso por paso\n"<<endl
-        <<"Para resolver tu cubo necesitas indicarme la posici�n de los colores en las caras, recuerda que el color de la cara es indicado por el color del centro de la misma, a continuaci�n,veras una r�brica de como debes representar los colores:\n"<<endl
-        <<"El orden de los colores se representa de arriba hacia abajo de izquierda a derecha como se indica a continuaci�n"<<endl
-        <<" -------"<<endl
-        <<" |1|2|3|"<<endl
+    switch(color)
+    {
+        case 0:
+            cout<<"Cara Blanca (se mira poniendo la cara az�l debajo):"<<endl;
+            break;
+        case 1:
+            cout<<"Cara Az�l (Teniendo la cara blanca arriba):"<<endl;
+            break;
+        case 2:
+            cout<<"Cara Naranja (Teniendo la cara blanca arriba):"<<endl;
+            break;
+        case 3:
+            cout<<"Cara Verde (Teniendo la cara blanca arriba):"<<endl;
+            break;
+        case 4:
+            cout<<"Cara Rojo (Teniendo la cara blanca arriba):"<<endl;
+            break;
+        case 5:
+            cout<<"Cara Amarilla (Teniendo la cara azul arriba):"<<endl;
+            break;
+    }
+    cout<<" |1|2|3|"<<endl
         <<" |4|5|6|"<<endl
         <<" |7|8|9|"<<endl
-        <<" -------"<<endl
         <<"R�brica de colores"<<endl
         <<"1 = Blanco   2 = Amarillo    3 = Naranja"<<endl
-        <<"4 = Verde    5 = Azúl        6 = Rojo\n"<<endl;
+        <<"4 = Verde    5 = Azúl        6 = Rojo"<<endl
+        <<"7 = Reintroducir una posicion\n"<<endl;
 }
 void wrtFace(int *arr)
 {
     setlocale(LC_CTYPE, "Spanish");
-    int n=0, i=0;
-    bool success = true;
-    for(int i=0; i<9; i++){
-    	try{
-	        cin>>n;
-	        if(n<1||n>6)	throw n;
-	        arr[i]=(n);
-	    }catch(const int& error){
-	    	cout<<"El valor \""<<error<<"\" no es valido, reintroducelo"<<endl;
-	    	i--;
-		}
+    string n = "", pos = "", p[9];
+    int static color = 0;
+    for(int i=0; i<9; i++)
+    {
+        p[i] = " ";
     }
+    switch(color)
+    {
+        case 0:
+            p[4] ='1';
+            break;
+        case 1:
+            p[4]='5';
+            break;
+        case 2:
+            p[4]='3';
+            break;
+        case 3:
+            p[4]='4';
+            break;
+        case 4:
+            p[4]='6';
+            break;
+        case 5:
+            p[4]='2';
+            break;
+    }
+    p[0] = '*';
+    for(int i=0; i<9; i++)
+    {
+        if(i==4)    continue;
+        displayMenu(color);
+        p[i] = '*';
+        face(p);   
+        try{
+	        
+            while(!isValidInt(n))
+            {
+                cin>>n;
+                if(!isValidInt(n))    throw n;
+                if(stoi(n)<1 || stoi(n)>7)  throw n;
+            }
+            p[i] = n;
+            n = "";
+            if(p[i]=="7")
+            {
+                cout<<"¿Que posición? ";
+                while(!isValidInt(pos)){
+                    try{
+                        cin>>pos;
+                        if(!isValidInt(pos))    throw pos;
+                        if(stoi(pos)<1 || stoi(pos)>9 || pos=="5")  throw pos;
+                        cout<<"Introduce el nuevo numero:"<<endl;
+                        while(!isValidInt(n)){
+                            try{
+                                cin>>n;
+                                if(!isValidInt(n))    throw n;
+                                if(stoi(n)<1 || stoi(n)>6)  throw n;
+                                p[stoi(pos)-1] = n;
+                                i--;
+                            }catch(string &e){
+                                cout<<"El valor \""<<e<<"\" es invalido"<<endl;
+                                n = "";
+                            }
+                        }
+                        n = "";
+                    }catch(string &e){
+                        cout<<"El valor \""<<e<<"\" es invalido"<<endl;
+                        pos = "";
+                    }
+                }
+                pos = "";
+            }
+	        arr[i]=stoi(p[i]);
+	    }catch(string &e){
+	    	cout<<"El valor \""<<e<<"\" no es valido, reintroducelo"<<endl;
+            n = "";
+	    	i--;
+            system("pause");
+		}
+        system("cls" );
+    }
+    color++;
+}
+void face(string p[9]){
+	for(int i=0;i<9;i++){
+        if(i!=0 && i%3==0)  cout<<" |"<<endl<<" -------------"<<endl;
+        if(i==0)  cout<<" -------------"<<endl;
+		cout<<" | "<<p[i];
+	}
+    cout<<" |"<<endl<<" -------------"<<endl;
 }
 void ptrFace(int *arr)
 {
@@ -1173,6 +1267,18 @@ void ptrFace(int *arr)
         if(i==2 || i==5 || i==8)
             cout<<endl;
     }
+}
+bool isValidInt(string valid_numeroEnCadena)
+{
+    bool valido = true;
+    int tamanioDeCadena = valid_numeroEnCadena.size();
+    if(tamanioDeCadena == 0)    valido = false;
+    for(int i=0; valido && i<tamanioDeCadena; i++)
+    {
+        if(!isdigit(valid_numeroEnCadena.at(i)))
+        valido = false;
+    }
+    return valido;
 }
 void ptrPasosSinNotacion()
 {
