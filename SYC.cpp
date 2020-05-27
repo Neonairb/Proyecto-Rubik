@@ -10,8 +10,8 @@ void ptrPasosConNotacion();
 void wrtFace(int *arr);
 void ptrFace(int *arr);
 int pasosRepetidos(int p[1000], int s[500]);
-void face(string p[9]);
 bool isValidInt(string valid_numeroEnCadena);
+void change_num(int *arr);
 
 struct Cube
 {
@@ -28,8 +28,6 @@ struct Cube
 			cout<<"No se pudo reservar memoria";
 			exit(-1);
 		}
-	    setlocale(LC_CTYPE, "Spanish");
-
 		wrtFace(white);
 		wrtFace(blue);
 		wrtFace(orange);
@@ -1085,43 +1083,227 @@ struct Cube
             }
         }
     }
+    void changeFace()
+    {
+        string option1 = "", option2 = "", option3 = "";
+        do{
+            system("cls");
+            cout<<"¿Que cara quieres cambiar?"<<endl
+            <<"1: Cara Blanca   2: Cara Amarilla    3: Cara Naranja"<<endl
+            <<"4: Cara Verde    5: Cara Azul        6: Cara Roja"<<endl
+            <<"7: No quiero cambiar una cara"<<endl;
+            try{
+                cin>>option1;
+                if(!isValidInt(option1)) throw option1;
+                if(stoi(option1)>7 || stoi(option1)<1)    throw option1;
+                switch(stoi(option1)){
+                    case 1:
+                        do{
+                            system("cls");
+                            displayMenu(0);
+                            ptrFace(white);
+                            change_num(white);
+                            system("cls");
+                            ptrFace(white);
+                            cout<<"¿Quieres cambiar otro numero de esta cara?"<<endl
+                                <<"1: Si 2: No"<<endl;
+                            do{
+                                try{
+                                    cin>>option2;
+                                    if(!isValidInt(option2)) throw option2;
+                                    if(stoi(option2)>2 || stoi(option2)<1)  throw option2;
+                                }catch(string &e){
+                                    cout<<"El valor \""<<e<<"\" no es valido, reintroducelo"<<endl;
+                                    option2 = "";
+                                }
+                            }while(!isValidInt(option2));
+                        }while(option2!="2");
+                        break;
+                    case 2:
+                        do{
+                            system("cls");
+                            displayMenu(5);
+                            ptrFace(yellow);
+                            change_num(yellow);
+                            system("cls");
+                            ptrFace(yellow);
+                            cout<<"¿Quieres cambiar otro numero de esta cara?"<<endl
+                                <<"1: Si 2: No"<<endl;
+                            do{
+                                try{
+                                    cin>>option2;
+                                    if(!isValidInt(option2)) throw option2;
+                                    if(stoi(option2)>2 || stoi(option2)<1)  throw option2;
+                                }catch(string &e){
+                                    cout<<"El valor \""<<e<<"\" no es valido, reintroducelo"<<endl;
+                                    option2 = "";
+                                }
+                            }while(!isValidInt(option2));
+                        }while(option2!="2");
+                        break;
+                    case 3:
+                        do{
+                            system("cls");
+                            displayMenu(2);
+                            ptrFace(orange);
+                            change_num(orange);
+                            system("cls");
+                            ptrFace(orange);
+                            cout<<"¿Quieres cambiar otro numero de esta cara?"<<endl
+                                <<"1: Si 2: No"<<endl;
+                            do{
+                                try{
+                                    cin>>option2;
+                                    if(!isValidInt(option2)) throw option2;
+                                    if(stoi(option2)>2 || stoi(option2)<1)  throw option2;
+                                }catch(string &e){
+                                    cout<<"El valor \""<<e<<"\" no es valido, reintroducelo"<<endl;
+                                    option2 = "";
+                                }
+                            }while(!isValidInt(option2));
+                        }while(option2!="2");
+                        break;
+                    case 4:
+                        do{
+                            system("cls");
+                            displayMenu(3);
+                            ptrFace(green);
+                            change_num(green);
+                            system("cls");
+                            ptrFace(green);
+                            cout<<"¿Quieres cambiar otro numero de esta cara?"<<endl
+                                <<"1: Si 2: No"<<endl;
+                            do{
+                                try{
+                                    cin>>option2;
+                                    if(!isValidInt(option2)) throw option2;
+                                    if(stoi(option2)>2 || stoi(option2)<1)  throw option2;
+                                }catch(string &e){
+                                    cout<<"El valor \""<<e<<"\" no es valido, reintroducelo"<<endl;
+                                    option2 = "";
+                                }
+                            }while(!isValidInt(option2));
+                        }while(option2!="2");
+                        break;
+                    case 5:
+                        do{
+                            system("cls");
+                            displayMenu(stoi(option1)-1);
+                            ptrFace(blue);
+                            change_num(blue);
+                            system("cls");
+                            ptrFace(blue);
+                            cout<<"¿Quieres cambiar otro numero de esta cara?"<<endl
+                                <<"1: Si 2: No"<<endl;
+                            do{
+                                try{
+                                    cin>>option2;
+                                    if(!isValidInt(option2)) throw option2;
+                                    if(stoi(option2)>2 || stoi(option2)<1)  throw option2;
+                                }catch(string &e){
+                                    cout<<"El valor \""<<e<<"\" no es valido, reintroducelo"<<endl;
+                                    option2 = "";
+                                }
+                            }while(!isValidInt(option2));
+                        }while(option2!="2");
+                        break;
+                    case 6:
+                        do{
+                            system("cls");
+                            displayMenu(stoi(option1)-1);
+                            ptrFace(red);
+                            change_num(red);
+                            system("cls");
+                            ptrFace(red);
+                            cout<<"¿Quieres cambiar otro numero de esta cara?"<<endl
+                                <<"1: Si 2: No"<<endl;
+                            do{
+                                try{
+                                    cin>>option2;
+                                    if(!isValidInt(option2)) throw option2;
+                                    if(stoi(option2)>2 || stoi(option2)<1)  throw option2;
+                                }catch(string &e){
+                                    cout<<"El valor \""<<e<<"\" no es valido, reintroducelo"<<endl;
+                                    option2 = "";
+                                }
+                            }while(!isValidInt(option2));
+                        }while(option2!="2");
+                        break;
+                    case 7:
+                        option3 = "2";
+                        break;
+                    default:
+                        cout<<"Numero invalido"<<endl;
+                        continue;
+                }
+            }catch(string &e){
+                cout<<"El valor \""<<e<<"\" no es valido, reintroducelo"<<endl;
+            }
+            system("cls");
+            if(option3 == "2")  break;
+            prtCube();
+            cout<<"¿Quieres cambiar otra cara?"<<endl
+                <<"1: Si 2: No"<<endl;
+            do{
+                 try{
+                    cin>>option3;
+                    if(!isValidInt(option3)) throw option3;
+                    if(stoi(option3)>2 || stoi(option3)<1)  throw option3;
+                }catch(string &e){
+                    cout<<"El valor \""<<e<<"\" no es valido, reintroducelo"<<endl;
+                    option3 = "";
+                }
+            }while(!isValidInt(option3));
+        }while(option3!="2");
+        system("cls");
+    }
     void prtCube()
     {
-        setlocale(LC_CTYPE, "Spanish");
-        cout<<endl<<"Resultado:"<<endl;
-        cout<<"Blanca:"<<endl;
+        cout<<endl<<"Asi se ve tu cubo:"<<endl;
+        cout<<"Cara Blanca:"<<endl;
         ptrFace(white);
-        cout<<"Az�l:"<<endl;
+        cout<<"Cara Azul:"<<endl;
         ptrFace(blue);
-        cout<<"Amarilla:"<<endl;
+        cout<<"Cara Amarilla:"<<endl;
         ptrFace(yellow);
-        cout<<"Verde:"<<endl;
+        cout<<"Cara Verde:"<<endl;
         ptrFace(green);
-        cout<<"Roja:"<<endl;
+        cout<<"Cara Roja:"<<endl;
         ptrFace(red);
-        cout<<"Naranja:"<<endl;
+        cout<<"Cara Naranja:"<<endl;
         ptrFace(orange);
     }
 };
 int main()
 {
-    setlocale(LC_CTYPE, "Spanish");
-    int option=0;
-    cout<<"Bienvenido a SYC un programa que te indica c�mo resolver tu cubo Rubik paso por paso\n"<<endl
-        <<"Para resolver tu cubo necesitas indicarme la posici�n de los colores en las caras, recuerda que el color de la cara es indicado por el color del centro de la misma, a continuaci�n,veras una r�brica de como debes representar los colores:\n"<<endl
-        <<"El orden de los colores se representa de arriba hacia abajo de izquierda a derecha como se indica a continuaci�n"<<endl;
+    string option = "";
+    cout<<"Bienvenido a SYC un programa que te indica como resolver tu cubo Rubik paso por paso mediante el metodo de principiantes\n"<<endl
+        <<"Para resolver tu cubo necesitas indicarme la posicion de los colores en las caras, recuerda que el color de la cara es indicado por el color del centro de la misma, a continuacion,veras una rubrica de como debes representar los colores:\n"<<endl;
     Cube micubo;
-    micubo.solveCube();
-    //micubo.prtCube();
-    cout<<"Quieres ver las instrucci�n con notaci�n o texto (si elijes notaci�n se te dar� una rubrica para que la entiendas)"<<endl
-        <<"1. Notaci�n"<<endl
-        <<"2. Texto"<<endl;
-    while(option>2 || option<1)
-    {
-        cin>>option;
-        if(option>2 || option<1)    cout<<"Numero invalido, intentalo denuevo"<<endl;
+    micubo.prtCube();
+    cout<<"Quieres cambiar algun valor de alguna cara?"<<endl
+        <<"1: Si 2: No"<<endl;
+    cin>>option;
+    while(option == "1"){
+        micubo.changeFace();
+        option = "";
     }
-    switch(option)
+    //micubo.randCube();
+    micubo.solveCube();
+    cout<<"Quieres ver las instruccion con notacion o texto (si elijes notacion se te dara una rubrica para que la entiendas)"<<endl
+        <<"1. Notacion"<<endl
+        <<"2. Texto"<<endl;
+    do{
+        try{
+            cin>>option;
+            if(!isValidInt(option)) throw option;
+            if(stoi(option)>2 || stoi(option)<1)  throw option;
+        }catch(string &e){
+            cout<<"El valor \""<<e<<"\" no es valido, reintroducelo"<<endl;
+            option = "";
+        }
+    }while(!isValidInt(option));
+    switch(stoi(option))
     {
         case 1:
             ptrPasosConNotacion();
@@ -1134,14 +1316,22 @@ int main()
 }
 void displayMenu(int color)
 {
-    setlocale(LC_CTYPE, "Spanish");
+    cout<<"El orden de los colores se representa de arriba hacia abajo de izquierda a derecha como se indica a continuacion"<<endl
+        <<" -------"<<endl
+        <<" |1|2|3|"<<endl
+        <<" |4|5|6|"<<endl
+        <<" |7|8|9|"<<endl
+        <<"Rubrica de colores"<<endl
+        <<"1 = Blanco   2 = Amarillo    3 = Naranja"<<endl
+        <<"4 = Verde    5 = Azul        6 = Rojo"<<endl
+        <<"7 = Reintroducir una posicion\n"<<endl;
     switch(color)
     {
         case 0:
-            cout<<"Cara Blanca (se mira poniendo la cara az�l debajo):"<<endl;
+            cout<<"Cara Blanca (se mira poniendo la cara azul debajo):"<<endl;
             break;
         case 1:
-            cout<<"Cara Az�l (Teniendo la cara blanca arriba):"<<endl;
+            cout<<"Cara Azul (Teniendo la cara blanca arriba):"<<endl;
             break;
         case 2:
             cout<<"Cara Naranja (Teniendo la cara blanca arriba):"<<endl;
@@ -1156,94 +1346,54 @@ void displayMenu(int color)
             cout<<"Cara Amarilla (Teniendo la cara azul arriba):"<<endl;
             break;
     }
-    cout<<" |1|2|3|"<<endl
-        <<" |4|5|6|"<<endl
-        <<" |7|8|9|"<<endl
-        <<"R�brica de colores"<<endl
-        <<"1 = Blanco   2 = Amarillo    3 = Naranja"<<endl
-        <<"4 = Verde    5 = Azúl        6 = Rojo"<<endl
-        <<"7 = Reintroducir una posicion\n"<<endl;
 }
 void wrtFace(int *arr)
 {
-    setlocale(LC_CTYPE, "Spanish");
-    string n = "", pos = "", p[9];
+    string color_num = "";
     int static color = 0;
     for(int i=0; i<9; i++)
     {
-        p[i] = " ";
+        arr[i] = 0;
     }
     switch(color)
     {
         case 0:
-            p[4] ='1';
+            arr[4] = 1;
             break;
         case 1:
-            p[4]='5';
+            arr[4] = 5;
             break;
         case 2:
-            p[4]='3';
+            arr[4] = 3;
             break;
         case 3:
-            p[4]='4';
+            arr[4] = 4;
             break;
         case 4:
-            p[4]='6';
+            arr[4] = 6;
             break;
         case 5:
-            p[4]='2';
+            arr[4] = 2;
             break;
     }
-    p[0] = '*';
     for(int i=0; i<9; i++)
     {
         if(i==4)    continue;
         displayMenu(color);
-        p[i] = '*';
-        face(p);   
+        ptrFace(arr);   
         try{
-	        
-            while(!isValidInt(n))
-            {
-                cin>>n;
-                if(!isValidInt(n))    throw n;
-                if(stoi(n)<1 || stoi(n)>7)  throw n;
+            cin>>color_num;
+            if(!isValidInt(color_num))    throw color_num;
+            if(stoi(color_num)<1 || stoi(color_num)>7)  throw color_num;
+            if(color_num=="7"){
+                change_num(arr);
+                i--;
             }
-            p[i] = n;
-            n = "";
-            if(p[i]=="7")
-            {
-                cout<<"¿Que posición? ";
-                while(!isValidInt(pos)){
-                    try{
-                        cin>>pos;
-                        if(!isValidInt(pos))    throw pos;
-                        if(stoi(pos)<1 || stoi(pos)>9 || pos=="5")  throw pos;
-                        cout<<"Introduce el nuevo numero:"<<endl;
-                        while(!isValidInt(n)){
-                            try{
-                                cin>>n;
-                                if(!isValidInt(n))    throw n;
-                                if(stoi(n)<1 || stoi(n)>6)  throw n;
-                                p[stoi(pos)-1] = n;
-                                i--;
-                            }catch(string &e){
-                                cout<<"El valor \""<<e<<"\" es invalido"<<endl;
-                                n = "";
-                            }
-                        }
-                        n = "";
-                    }catch(string &e){
-                        cout<<"El valor \""<<e<<"\" es invalido"<<endl;
-                        pos = "";
-                    }
-                }
-                pos = "";
+            else{
+	            arr[i]=stoi(color_num);
             }
-	        arr[i]=stoi(p[i]);
 	    }catch(string &e){
 	    	cout<<"El valor \""<<e<<"\" no es valido, reintroducelo"<<endl;
-            n = "";
 	    	i--;
             system("pause");
 		}
@@ -1251,22 +1401,40 @@ void wrtFace(int *arr)
     }
     color++;
 }
-void face(string p[9]){
-	for(int i=0;i<9;i++){
-        if(i!=0 && i%3==0)  cout<<" |"<<endl<<" -------------"<<endl;
-        if(i==0)  cout<<" -------------"<<endl;
-		cout<<" | "<<p[i];
-	}
-    cout<<" |"<<endl<<" -------------"<<endl;
+void change_num(int *arr)
+{
+    string pos = "", color_num = "";
+    cout<<"¿Que posición? ";
+    do{
+        try{
+            cin>>pos;
+            if(!isValidInt(pos))    throw pos;
+            if(stoi(pos)<1 || stoi(pos)>9 || pos=="5")  throw pos;
+            cout<<"Introduce el nuevo numero:"<<endl;
+            do{
+                try{
+                    cin>>color_num;
+                    if(!isValidInt(color_num))    throw color_num;
+                    if(stoi(color_num)<1 || stoi(color_num)>6)  throw color_num;
+                    arr[stoi(pos)-1] = stoi(color_num);
+                }catch(string &e){
+                    cout<<"El valor \""<<e<<"\" es invalido"<<endl;
+                }
+            }while(!isValidInt(color_num));
+        }catch(string &e){
+            cout<<"El valor \""<<e<<"\" es invalido"<<endl;
+        }
+    }while(!isValidInt(pos));
 }
 void ptrFace(int *arr)
 {
-    for(int i=0; i<9; i++)
-    {
-        cout<<(arr[i])<<" ";
-        if(i==2 || i==5 || i==8)
-            cout<<endl;
-    }
+    for(int i=0;i<9;i++){
+        if(i!=0 && i%3==0)  cout<<" |"<<endl<<" -------------"<<endl;
+        if(i==0)  cout<<" -------------"<<endl;
+        if(arr[i]==0)   cout<<" |  ";
+		else    cout<<" | "<<arr[i];
+	}
+    cout<<" |"<<endl<<" -------------"<<endl;
 }
 bool isValidInt(string valid_numeroEnCadena)
 {
@@ -1282,19 +1450,23 @@ bool isValidInt(string valid_numeroEnCadena)
 }
 void ptrPasosSinNotacion()
 {
-    setlocale(LC_CTYPE, "Spanish");
-    int j=0, pR[500], numPasos=0, aux=0;
+    int j=0, pR[500], aux=0;
+    string numPasos = "";
     int k = pasosRepetidos(pasos, pR);
 
-    cout<<"�Cuantos pasos quieres que se desplieguen a la vez? (Cuando termines de hacerlos presiona cualqueir bot�n)"<<endl;
-    cin>>numPasos;
-    while(numPasos<1)
-    {
-        cout<<"N�mero de pasos invalidos, introduce denuevo"<<endl;
-        cin>>numPasos;
-    }
-    aux = numPasos;
-    cout<<"\nTodos los pasos se hacen mirando la cara BLANCA teniendo la cara AZ�L debajo"<<endl;
+    cout<<"¿Cuantos pasos quieres que se desplieguen a la vez? (Cuando termines de hacerlos presiona cualqueir boton)"<<endl;
+    do{
+        try{
+            cin>>numPasos;
+            if(!isValidInt(numPasos)) throw numPasos;
+            if(stoi(numPasos)<1)  throw numPasos;
+        }catch(string &e){
+            cout<<"El valor \""<<e<<"\" no es valido, reintroducelo"<<endl;
+            numPasos = "";
+        }
+    }while(!isValidInt(numPasos));
+    aux = stoi(numPasos);
+    cout<<"\nTodos los pasos se hacen mirando la cara BLANCA teniendo la cara AZUL debajo"<<endl;
     for(int i=0; i<k; i++)
     {
         if(pR[i]==pR[i+1]&&pR[i+1]==pR[i+2])
@@ -1355,20 +1527,21 @@ void ptrPasosSinNotacion()
             }
             j++;
         }
-        if(j==numPasos)
+        if(j==aux)
         {
             system("pause");
-            numPasos+=aux;
+            aux+=stoi(numPasos);
         }
     }
 }
 void ptrPasosConNotacion()
 {
     setlocale(LC_CTYPE, "Spanish");
-    int j=0, l=0, pR[500], numPasos, aux;
+    int j=0, l=0, pR[500], aux;
+    string numPasos = "";
     int k = pasosRepetidos(pasos, pR);
 
-    cout<<"Todos los pasos se hacen teniendo la cara BLANCA como superior, la AMARILLA como inferior y se mira de frente la cara AZ�L"<<endl
+    cout<<"Todos los pasos se hacen teniendo la cara BLANCA como superior, la AMARILLA como inferior y se mira de frente la cara AZUL"<<endl
         <<"------------------------------------------------------------------------------------------------------|"<<endl
         <<"|     U = Up     |    D = Down    |    R = Right   |    L = Left    |    F = Front   |    B = Back    |"<<endl
         <<"|----------------|----------------|----------------|----------------|----------------|----------------|"<<endl
@@ -1380,17 +1553,21 @@ void ptrPasosConNotacion()
         <<"|    | | | |     |     | | | |    |     | | |X| |  |   | |X| | |    |    |X|X|X| ->  | <- | | | |     |"<<endl
         <<"|    | | | |     |     |X|X|X|->  |     | | |X|    |   V |X| | |    |    |X|X|X|     |    | | | |     |"<<endl
         <<"------------------------------------------------------------------------------------------------------|"<<endl
-        <<"Cuando se dice en sentido horario se refiere a como si vieras la cara que estas girando de frente.\nSi la letra est� acompa�ada por el s�mbolo \' (prima) significa que va en direcci�n anti-horaria\n"<<endl;
+        <<"Cuando se dice en sentido horario se refiere a como si vieras la cara que estas girando de frente.\nSi la letra esta acompanada por el simbolo \' (prima) significa que va en direccion anti-horaria\n"<<endl;
 
-    cout<<"�En cuantos pasos quieres ir avanzando? (Cuando termines de hacerlos presiona cualquier bot�n)"<<endl;
+    cout<<"¿En cuantos pasos quieres ir avanzando? (Cuando termines de hacerlos presiona cualquier boton)"<<endl;
 
-    cin>>numPasos;
-    while(numPasos<1)
-    {
-        cout<<"N�mero de pasos invalidos, reintroducelo"<<endl;
-        cin>>numPasos;
-    }
-    aux = numPasos;
+    do{
+        try{
+            cin>>numPasos;
+            if(!isValidInt(numPasos)) throw numPasos;
+            if(stoi(numPasos)<1)  throw numPasos;
+        }catch(string &e){
+            cout<<"El valor \""<<e<<"\" no es valido, reintroducelo"<<endl;
+            numPasos = "";
+        }
+    }while(!isValidInt(numPasos));
+    aux = stoi(numPasos);
     for(int i=0; i<k; i++)
     {
         if(pR[i]==pR[i+1]&&pR[i+1]==pR[i+2])
@@ -1451,10 +1628,10 @@ void ptrPasosConNotacion()
             }
             j++;
         }
-        if(j==numPasos)
+        if(j==aux)
         {
             system("pause");
-            numPasos+=aux;
+            aux+=stoi(numPasos);
         }
     }
 }
