@@ -3,6 +3,7 @@ using namespace std;
 
 int pasos[1000];
 int counter=0;
+std::mutex mymutex[6];
 
 void displayMenu(int color);
 void ptrPasosSinNotacion();
@@ -12,28 +13,23 @@ void ptrFace(int *arr);
 int pasosRepetidos(int p[1000], int s[500]);
 bool isValidInt(string valid_numeroEnCadena);
 void change_num(int *arr);
+void searchNums(int arr[], int &w, int &b, int &y, int &g, int &r, int &o);
 
 struct Cube
 {
     int *white, *yellow, *orange, *green, *red, *blue;
 	Cube(){
 		try{
-			white= new (nothrow) int[9];
-	    	yellow= new (nothrow) int[9];
-	    	orange= new (nothrow) int[9];
-	    	green= new (nothrow) int[9];
-	    	red= new (nothrow) int[9];
-	    	blue= new (nothrow) int[9];
+			white= new int[9];
+	    	yellow= new int[9];
+	    	orange= new int[9];
+	    	green= new int[9];
+	    	red= new int[9];
+	    	blue= new int[9];
 		}catch(bad_alloc& error){
 			cout<<"No se pudo reservar memoria";
 			exit(-1);
 		}
-		wrtFace(white);
-		wrtFace(blue);
-		wrtFace(orange);
-		wrtFace(green);
-		wrtFace(red);
-		wrtFace(yellow);
 	}
 	void rotRightDown()
     {
@@ -1257,6 +1253,21 @@ struct Cube
         }while(option3!="2");
         system("cls");
     }
+    void checkcube()
+    {
+        thread t[6];
+        int w=0, b=0, y=0, g=0, r=0, o=0;
+        t[0] = thread(&searchNums, white, ref(w), ref(b), ref(y), ref(g), ref(r), ref(o));
+        t[1] = thread(&searchNums, blue, ref(w), ref(b), ref(y), ref(g), ref(r), ref(o));
+        t[2] = thread(&searchNums, yellow, ref(w), ref(b), ref(y), ref(g), ref(r), ref(o));
+        t[3] = thread(&searchNums, green, ref(w), ref(b), ref(y), ref(g), ref(r), ref(o));
+        t[4] = thread(&searchNums, red, ref(w), ref(b), ref(y), ref(g), ref(r), ref(o));
+        t[5] = thread(&searchNums, orange, ref(w), ref(b), ref(y), ref(g), ref(r), ref(o));
+
+        for(int i=0; i<6;i++)
+            t[i].join();
+        if(w!=8||b!=8||y!=8||g!=8||r!=8||o!=8)  throw invalid_argument("Los datos introducidos no correspondan a un cubo real");
+    }
     void prtCube()
     {
         cout<<endl<<"Asi se ve tu cubo:"<<endl;
@@ -1273,20 +1284,96 @@ struct Cube
         cout<<"Cara Naranja:"<<endl;
         ptrFace(orange);
     }
+    friend istream& operator >> (istream &is, Cube &c)
+    {
+        wrtFace(c.white);
+		wrtFace(c.blue);
+		wrtFace(c.orange);
+		wrtFace(c.green);
+		wrtFace(c.red);
+		wrtFace(c.yellow);
+        return is;
+    }
+    friend ostream& operator << (ostream &os, Cube &c)
+    {
+        os<<endl<<"Asi se ve tu cubo:"<<endl;
+        os<<"Cara Blanca:"<<endl;
+        ptrFace(c.white);
+        os<<"Cara Azul:"<<endl;
+        ptrFace(c.blue);
+        os<<"Cara Amarilla:"<<endl;
+        ptrFace(c.yellow);
+        os<<"Cara Verde:"<<endl;
+        ptrFace(c.green);
+        os<<"Cara Roja:"<<endl;
+        ptrFace(c.red);
+        os<<"Cara Naranja:"<<endl;
+        ptrFace(c.orange);
+        return os;
+    }
 };
 int main()
 {
     string option = "";
+    bool bandera = true;
     cout<<"Bienvenido a SYC un programa que te indica como resolver tu cubo Rubik paso por paso mediante el metodo de principiantes\n"<<endl
         <<"Para resolver tu cubo necesitas indicarme la posicion de los colores en las caras, recuerda que el color de la cara es indicado por el color del centro de la misma, a continuacion,veras una rubrica de como debes representar los colores:\n"<<endl;
     Cube micubo;
-    micubo.prtCube();
-    cout<<"Quieres cambiar algun valor de alguna cara?"<<endl
-        <<"1: Si 2: No"<<endl;
-    cin>>option;
-    while(option == "1"){
-        micubo.changeFace();
-        option = "";
+    while(true)
+    {
+        try
+        {
+            if(!bandera)
+            {
+                while(true)
+                {
+                    try
+                    {
+                        cin>>option;
+                        if(!isValidInt(option)) throw invalid_argument("Opcion invalida");
+                        if(stoi(option)>2||stoi(option)<1) throw invalid_argument("Opcion invalida");
+                        if(stoi(option)==2){
+                            bandera=true;
+                        }
+                        break;
+                    }catch(invalid_argument &e)
+                    {
+                        cout<<e.what()<<" reintroducelo";
+                    }
+                }
+            }
+            if(bandera)
+            {
+                cin>>micubo;
+                bandera = false;
+            }
+            micubo.prtCube();
+            cout<<"Quieres cambiar algun valor de alguna cara?"<<endl
+                <<"1: Si 2: No"<<endl;
+            while(true)
+            {
+                try
+                {
+                    cin>>option;
+                    if(!isValidInt(option)) throw invalid_argument("Opcion invalida");
+                    if(stoi(option)>2||stoi(option)<1) throw invalid_argument("Opcion invalida");
+                    break;
+                }catch(invalid_argument &e)
+                {
+                    cout<<e.what()<<" reintroducelo";
+                }
+            }
+            if(option == "1"){
+                micubo.changeFace();
+                option = "";
+            }
+            micubo.checkcube();
+            break;
+        }catch(invalid_argument &e)
+        {
+            cout<<e.what()<<endl
+                <<"Cambiar una cara de este cubo (1) o volver a introducir todo el cubo(2)"<<endl;
+        }
     }
     //micubo.randCube();
     micubo.solveCube();
@@ -1355,7 +1442,7 @@ void wrtFace(int *arr)
     {
         arr[i] = 0;
     }
-    switch(color)
+    switch(color%6)
     {
         case 0:
             arr[4] = 1;
@@ -1447,6 +1534,46 @@ bool isValidInt(string valid_numeroEnCadena)
         valido = false;
     }
     return valido;
+}
+void searchNums(int arr[], int &w, int &b, int &y, int &g, int &r, int &o)
+{
+    for(int i=0; i<9; i++)
+    {
+        if(i==4)    i++;
+        switch(arr[i])
+        {
+            case 1:
+                mymutex[0].lock();
+                w++;
+                mymutex[0].unlock();
+                break;
+            case 2:
+                mymutex[1].lock();
+                y++;
+                mymutex[1].unlock();
+                break;
+            case 3:
+                mymutex[2].lock();
+                o++;
+                mymutex[2].unlock();
+                break;
+            case 4:
+                mymutex[3].lock();
+                g++;
+                mymutex[3].unlock();
+                break;
+            case 5:
+                mymutex[4].lock();
+                b++;
+                mymutex[4].unlock();
+                break;
+            case 6:
+                mymutex[5].lock();
+                r++;
+                mymutex[5].unlock();
+                break;
+        }
+    }
 }
 void ptrPasosSinNotacion()
 {
