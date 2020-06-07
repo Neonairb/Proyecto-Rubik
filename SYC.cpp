@@ -1,14 +1,14 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-//Crear una variable para ir registrando los movimientos que ocurrenen el cubo
+//Crear una variable para ir registrando los movimientos que ocurren en el cubo
 int pasos[1000];
 //Una variable contador para poder luego saber cuantos movimientos ocurrieron
 int counter=0;
 //Un arreglo de mutex para luego trabajar con concurrencia
 std::mutex mymutex[6];
 
-//Declaracion de las distintas funciones
+//Declaración de las distintas funciones
 void displayMenu(int color);
 void ptrPasosSinNotacion();
 void ptrPasosConNotacion();
@@ -20,23 +20,23 @@ void change_num(int *arr);
 void searchNums(int arr[], int &w, int &b, int &y, int &g, int &r, int &o);
 
 /**
-* Estructura con la que se podra trabajar con el cubo
-* Aqui se encuentran todas las funcionones que permiten manipular los datos
-* dados como si fuera un cubo real.
+* Estructura con la que se podrá trabajar con el cubo
+* Aquí se encuentran todas las funciones que permiten manipular los datos
+* como si fuera un cubo real.
 * @author Equipo 1
 */
 struct Cube
 {
     int *white, *yellow, *orange, *green, *red, *blue;
     /**
-    * Contructor de la clase
-    * Al declarar una variable de este tipo de contructor empezara con reservar
-    * la memoria necesaria para 6 arreglos de 9 datos cada uno y se hara que los
+    * Constructor de la clase
+    * Al declarar una variable de este tipo de constructor empezará con reservar
+    * la memoria necesaria para 6 arreglos de 9 datos cada uno y se hará que los
     * apuntadores de la clase apunten a esa memoria, cada uno de los apuntadores
-    * simbolizaran la cara del cubo del nombre que se les dio y su indice
-    * correspondera a la posicion de los colores de esa cara.
+    * simbolizarán la cara del cubo del nombre que se les dio y su índice
+    * corresponderá a la posición de los colores de esa cara.
     * @author Equipo 1
-    * @throw bad_alloc si la memoria no se pudo reserar correctamente
+    * @throw bad_alloc si la memoria no se pudo reservar correctamente
     */
 	Cube(){
 		try{
@@ -52,12 +52,12 @@ struct Cube
 		}
 	}
     /**
-     * Funcion de la clase
-     * En esta funcion se simulara el movimiento de girar la cara derecha
-     * hacia abajo, esto viendose de frente la cara blaca del cubo con la
-     * cara azÃºl por debajo, o bien mirando la cara naranja de frente y rotarla
-     * hacia la izquierda, esto se logra cambiando los datos de los arreglos
-     * siguiendo la aritmetica del cubo.
+     * Función de la clase
+     * En esta función se simulará el movimiento de girar la cara derecha
+     * hacia arriba, esto viéndose de frente la cara blanca del cubo con la cara 
+     * azul por debajo, o bien mirando la cara naranja de frente y rotarla 
+     * hacia la derecha, se aprovecha el hecho de que al hacer el mismo 
+     * movimiento 3 veces es como si se hiciera el movimiento contrario 1 vez.
      * @author Equipo 1
      */
 	void rotRightDown()
@@ -92,16 +92,16 @@ struct Cube
         orange[7]=auxi[3];
         orange[8]=auxi[6];
 
-        //Asignarle al arreglo un numero que simbolizara que movimiento realizo
+        //Asignarle al arreglo un número que simbolizara que movimiento realizo
         pasos[counter]=1;
         counter+=1;
     }
     /**
-     * Funcion de la clase
-     * En esta funcion se simulara el movimiento de girar la cara derecha
-     * hacia arriba, esto viendose de frente la cara blaca del cubo con la cara 
-     * azÃºl por debajo, o bien mirando la cara naranja de frente y rotarla 
-     * hacia la derecha, se aprobecha el echo de que al hacer el mismo 
+     * Función de la clase
+     * En esta función se simulará el movimiento de girar la cara derecha
+     * hacia arriba, esto viéndose de frente la cara blanca del cubo con la cara 
+     * azul por debajo, o bien mirando la cara naranja de frente y rotarla 
+     * hacia la derecha, se aprovecha el hecho de que al hacer el mismo 
      * movimiento 3 veces es como si se hiciera el movimiento contrario 1 vez.
      * @author Equipo 1
      */
@@ -112,12 +112,12 @@ struct Cube
         rotRightDown();
     }
     /**
-     * Funcion de la clase
-     * En esta funcion se simulara el movimiento de girar la cara izquierda
-     * hacia abajo, esto viendose de frente la cara blaca del cubo con la
-     * cara azÃºl por debajo, o bien mirando la cara roja de frente y rotarla
+     * Función de la clase
+     * En esta función se simulará el movimiento de girar la cara izquierda
+     * hacia abajo, esto viéndose de frente la cara blanca del cubo con la
+     * cara azul por debajo, o bien mirando la cara roja de frente y rotarla
      * hacia la derecha, esto se logra cambiando los datos de los arreglos
-     * siguiendo la aritmetica del cubo.
+     * siguiendo la aritmética del cubo.
      * @author Equipo 1
      */
     void rotLeftDown()
@@ -152,16 +152,16 @@ struct Cube
         red[7]=auxi[5];
         red[8]=auxi[2];
 
-        //Asignarle al arreglo un numero que simbolizara que movimiento realizo
+        //Asignarle al arreglo un número que simbolizara que movimiento realizo
         pasos[counter]=3;
         counter+=1;
     }
     /**
-     * Funcion de la clase
-     * En esta funcion se simulara el movimiento de girar la cara izquierda
-     * hacia abajo, esto viendose de frente la cara blaca del cubo con la cara 
-     * azÃºl por debajo, o bien mirando la cara roja de frente y rotarla 
-     * hacia la izquierda, se aprobecha el echo de que al hacer el mismo 
+     * Función de la clase
+     * En esta función se simulará el movimiento de girar la cara izquierda
+     * hacia abajo, esto viéndose de frente la cara blanca del cubo con la cara 
+     * azul por debajo, o bien mirando la cara roja de frente y rotarla 
+     * hacia la izquierda, se aprovecha el hecho de que al hacer el mismo 
      * movimiento 3 veces es como si se hiciera el movimiento contrario 1 vez.
      * @author Equipo 1
      */
@@ -172,12 +172,12 @@ struct Cube
         rotLeftDown();
     }
     /**
-     * Funcion de la clase
-     * En esta funcion se simulara el movimiento de girar la cara superior
-     * hacia la derecha, esto viendose de frente la cara blaca del cubo con la
-     * cara azÃºl por debajo, o bien mirando la cara verde de frente y rotarla
+     * Función de la clase
+     * En esta función se simulará el movimiento de girar la cara superior
+     * hacia la derecha, esto viéndose de frente la cara blanca del cubo con la
+     * cara azul por debajo, o bien mirando la cara verde de frente y rotarla
      * hacia la izquierda, esto se logra cambiando los datos de los arreglos
-     * siguiendo la aritmetica del cubo.
+     * siguiendo la aritmética del cubo.
      * @author Equipo 1
      */
     void rotUpRight()
@@ -212,16 +212,16 @@ struct Cube
         green[7]=auxi[3];
         green[8]=auxi[6];
 
-        //Asignarle al arreglo un numero que simbolizara que movimiento realizo
+        //Asignarle al arreglo un número que simbolizará que movimiento realizo
         pasos[counter]=4;
         counter+=1;
     }
     /**
-     * Funcion de la clase
-     * En esta funcion se simulara el movimiento de girar la cara superior
-     * hacia la izquierda, esto viendose de frente la cara blaca del cubo con la cara 
-     * azÃºl por debajo, o bien mirando la cara verde de frente y rotarla 
-     * hacia la derecha, se aprobecha el echo de que al hacer el mismo 
+     * Función de la clase
+     * En esta función se simulará el movimiento de girar la cara superior
+     * hacia la izquierda, esto viéndose de frente la cara blanca del cubo con la cara 
+     * azul por debajo, o bien mirando la cara verde de frente y rotarla 
+     * hacia la derecha, se aprovecha el hecho de que al hacer el mismo 
      * movimiento 3 veces es como si se hiciera el movimiento contrario 1 vez.
      * @author Equipo 1
      */
@@ -232,17 +232,17 @@ struct Cube
         rotUpRight();
     }
     /**
-     * Funcion de la clase
-     * En esta funcion se simulara el movimiento de girar la cara inferior
-     * hacia la derecha, esto viendose de frente la cara blaca del cubo con la
-     * cara azÃºl por debajo, o bien mirando la cara azÃºl de frente y rotarla
+     * Función de la clase
+     * En esta función se simulará el movimiento de girar la cara inferior
+     * hacia la derecha, esto viéndose de frente la cara blanca del cubo con la
+     * cara azul por debajo, o bien mirando la cara azúl de frente y rotarla
      * hacia la derecha, esto se logra cambiando los datos de los arreglos
-     * siguiendo la aritmetica del cubo.
+     * siguiendo la aritmética del cubo.
      * @author Equipo 1
      */
     void rotDownRight()
     {
-        //Simulando el movimiento de los colores adyacentes de la cara azÃºl
+        //Simulando el movimiento de los colores adyacentes de la cara azul
         int aux = white[6];
         white[6]=red[8];
         red[8]=yellow[2];
@@ -261,7 +261,7 @@ struct Cube
         yellow[0]=orange[6];
         orange[6]=aux;
 
-        //Simulando el rote de los colores en la cara azÃºl
+        //Simulando el rote de los colores en la cara azul
         int auxi[9] = {blue[0], blue[1], blue[2], blue[3], blue[4], blue[5], blue[6], blue[7], blue[8]};
         blue[0]=auxi[6];
         blue[1]=auxi[3];
@@ -272,16 +272,16 @@ struct Cube
         blue[7]=auxi[5];
         blue[8]=auxi[2];
 
-        //Asignarle al arreglo un numero que simbolizara que movimiento realizo
+        //Asignarle al arreglo un número que simbolizara que movimiento realizo
         pasos[counter]=2;
         counter+=1;
     }
     /**
-     * Funcion de la clase
-     * En esta funcion se simulara el movimiento de girar la cara inferior
-     * hacia la izquierda, esto viendose de frente la cara blaca del cubo con la cara 
-     * azÃºl por debajo, o bien mirando la cara azÃºl de frente y rotarla 
-     * hacia la izquierda, se aprobecha el echo de que al hacer el mismo 
+     * Función de la clase
+     * En esta función se simulará el movimiento de girar la cara inferior
+     * hacia la izquierda, esto viéndose de frente la cara blanca del cubo con la cara 
+     * azúl por debajo, o bien mirando la cara azúl de frente y rotarla 
+     * hacia la izquierda, se aprovecha el hecho de que al hacer el mismo 
      * movimiento 3 veces es como si se hiciera el movimiento contrario 1 vez.
      * @author Equipo 1
      */
@@ -292,10 +292,10 @@ struct Cube
         rotDownRight();
     }
     /**
-     * Funcion de la clase
-     * En esta funcion se simulara el movimiento de girar la cara frontal
+     * Función de la clase
+     * En esta función se simulará el movimiento de girar la cara frontal
      * hacia la derecha teniendo la cara blanca de frente, esto se logra 
-     * cambiando los datos de los arreglos siguiendo la aritmetica del cubo.
+     * cambiando los datos de los arreglos siguiendo la aritmética del cubo.
      * @author Equipo 1
      */
     void rotFaceForwRight()
@@ -330,15 +330,15 @@ struct Cube
         white[7]=auxi[5];
         white[8]=auxi[2];
 
-        //Asignarle al arreglo un numero que simbolizara que movimiento realizo
+        //Asignarle al arreglo un número que simbolizara que movimiento realizo
         pasos[counter]=5;
         counter+=1;
     }
     /**
-     * Funcion de la clase
-     * En esta funcion se simulara el movimiento de girar la cara frontal
-     * hacia la izquierda, esto viendose de frente la cara blaca del cubo, 
-     * se aprobecha el echo de que al hacer el mismo movimiento 3 veces es 
+     * Función de la clase
+     * En esta función se simulará el movimiento de girar la cara frontal
+     * hacia la izquierda, esto viéndose de frente la cara blanca del cubo, 
+     * se aprovecha el hecho de que al hacer el mismo movimiento 3 veces es 
      * como si se hiciera el movimiento contrario 1 vez.
      * @author Equipo 1
      */
@@ -349,12 +349,12 @@ struct Cube
         rotFaceForwRight();
     }
     /**
-     * Funcion de la clase
-     * En esta funcion se simulara el movimiento de girar la cara trasera
-     * hacia la derecha, esto viendose de frente la cara blaca del cubo con la
-     * cara azÃºl por debajo, o bien mirando la cara amarilla de frente y rotarla
+     * Función de la clase
+     * En esta función se simulará el movimiento de girar la cara trasera
+     * hacia la derecha, esto viéndose de frente la cara blanca del cubo con la
+     * cara azul por debajo, o bien mirando la cara amarilla de frente y rotarla
      * hacia la izquierda, esto se logra cambiando los datos de los arreglos
-     * siguiendo la aritmetica del cubo.
+     * siguiendo la aritmética del cubo.
      * @author Equipo 1
      */
     void rotFaceBackRight()
@@ -389,16 +389,16 @@ struct Cube
         yellow[7]=auxi[3];
         yellow[8]=auxi[6];
 
-        //Asignarle al arreglo un numero que simbolizara que movimiento realizo
+        //Asignarle al arreglo un número que simbolizara que movimiento realizo
         pasos[counter]=6;
         counter+=1;
     }
     /**
-     * Funcion de la clase
-     * En esta funcion se simulara el movimiento de girar la cara tarsera
-     * hacia la izquierda, esto viendose de frente la cara blaca del cubo con la cara 
-     * azÃºl por debajo, o bien mirando la cara amarilla de frente y rotarla 
-     * hacia la derecha, se aprobecha el echo de que al hacer el mismo 
+     * Función de la clase
+     * En esta función se simulará el movimiento de girar la cara trasera
+     * hacia la izquierda, esto viéndose de frente la cara blanca del cubo con la cara 
+     * azul por debajo, o bien mirando la cara amarilla de frente y rotarla 
+     * hacia la derecha, se aprovecha el hecho de que al hacer el mismo 
      * movimiento 3 veces es como si se hiciera el movimiento contrario 1 vez.
      * @author Equipo 1
      */
@@ -409,17 +409,17 @@ struct Cube
         rotFaceBackRight();
     }
     /**
-     * Funcion de la clase
+     * Función de la clase
      * Hacer la cruz superior, busca llegar a tener una cruz blanca para poder 
-     * empezar a trabajar en el cubocon algoritmos, no es necesario que este 
-     * alineada puesto que una funcion se encargara de eso despues de tener 
-     * la cruz echa.
+     * empezar a trabajar en el cubo con algoritmos, no es necesario que este 
+     * alineada puesto que una función se encargará de eso después de tener 
+     * la cruz hecha.
      * @author Equipo 1
      */
     void makeSupCross()
     {
         int i=0, j=0;
-        //El proceso se repetira hasta que las posiciones que correspondena  la cruz tenga color blanco
+        //El proceso se repetirá hasta que las posiciones que corresponde a la cruz tenga color blanco
         while(white[1]!=1 || white[3]!=1 || white[5]!=1 || white[7]!=1)
         {
             for(j=0; j<4; j++)
@@ -490,17 +490,17 @@ struct Cube
         permutateSupCross();
     }
     /**
-     * Funcion de la clase
-     * Permutar la cruz superior, una vez se tenga la cruz blanca echa esta funcion
+     * Función de la clase
+     * Permutar la cruz superior, una vez se tenga la cruz blanca hecha esta función
      * se asegura de que esa cruz este alineada con sus respectivos colores
-     * en caso de no ser asi sigue un algoritmo que depende de la posicion 
+     * en caso de no ser así sigue un algoritmo que depende de la posición 
      * de ciertos colores y utiliza los movimientos anteriormente programados
      * para realizarlos.
      * @author Equipo 1
      */
     void permutateSupCross()
     {
-        //El proceso se repetira hasta que todas las posiciones dichas tengan el color esperado
+        //El proceso se repetirá hasta que todas las posiciones dichas tengan el color esperado
         while(orange[1]!=3 || green[1]!=4 || blue[1]!=5 || red[1]!=6)
         {
             for(int i=0; i<4; i++)
@@ -599,9 +599,9 @@ struct Cube
         }
     }
     /**
-     * Funcion de la clase
-     * Hacer la cara superior, una vez se tenga la cruz blanca echa esta 
-     * funcion buscara llegar a tener la cara blanca armada y alineada 
+     * Función de la clase
+     * Hacer la cara superior, una vez se tenga la cruz blanca hecha esta 
+     * función buscara llegar a tener la cara blanca armada y alineada 
      * con sus respectivos colores siguiendo algoritmos usando los
      * movimientos anteriormente programados.
      * @author Equipo 1
@@ -762,17 +762,17 @@ struct Cube
         }
     }
     /**
-     * Funcion de la clase
+     * Función de la clase
      * Hacer las aristas medias laterales, una vez la cara blanca este armada
-     * esta funcion buscara alinear las aristas que corresponden a la parte
+     * esta función buscara alinear las aristas que corresponden a la parte
      * media de los colores laterales del cubo sin alterar la cara armada, 
-     * esto se consigue con algoritmos echos en base a la posiciones de los 
+     * esto se consigue con algoritmos hechos en base a la posición de los 
      * colores con los movimientos anteriormente programados
      * @author Equipo 1
      */
     void makeLatEdge()
     {
-        //Mientras que no este el color buscado en la posicion necesaria
+        //Mientras que no este el color buscado en la posición necesaria
         while(blue[3]!=5 || blue[5]!=5 || green[3]!=4 || green[5]!=4)
         {
             for(int i=0; i<4; i++)
@@ -934,16 +934,16 @@ struct Cube
         }
     }
     /**
-     * Funcion de la clase
+     * Función de la clase
      * Hacer la cruz inferior, una vez armada la cara blanca y las aristas 
      * medias busca llegar a tener una cruz amarilla sin alterar lo que
-     * ya se tiene armado, siguiendo algoritmos que dependen de la posicion
+     * ya se tiene armado, siguiendo algoritmos que dependen de la posición
      * de los colores usando lo movimientos anteriormente programados.
      * @author Equipo 1
      */
     void makeInfCross()
     {
-        //Mientras que no este el color buscado en la posicion necesaria
+        //Mientras que no este el color buscado en la posición necesaria
         while(yellow[1]!=2 || yellow[3]!=2 || yellow[5]!=2 || yellow[7]!=2)
         {
             if(yellow[1]==2 && yellow[7]==2)
@@ -1016,18 +1016,18 @@ struct Cube
         permutateInfCross();
     }
     /**
-     * Funcion de la clase
+     * Función de la clase
      * Permutar la cruz inferior, una vez se tenga la cara blanca armada, 
-     * las aristas medias y la cruz amarilla echa esta funcion se asegura de 
+     * las aristas medias y la cruz amarilla hecha esta función se asegura de 
      * que esa cruz este alineada con sus respectivos colores en caso de no 
-     * ser asi sigue un algoritmo que depende de la posicion de ciertos colores, 
+     * ser así sigue un algoritmo que depende de la posición de ciertos colores, 
      * estos no alteran las partes ya armadas del cubo y utiliza los 
      * movimientos anteriormente programados para realizarlos.
      * @author Equipo 1
      */
     void permutateInfCross()
     {
-        //Mientras que no este el color buscado en la posicion necesaria
+        //Mientras que no este el color buscado en la posición necesaria
         while(orange[7]!=3 || green[7]!=4 || blue[7]!=5 || red[7]!=6)
         {
             for(int i=0; i<4; i++)
@@ -1125,16 +1125,16 @@ struct Cube
         }
     }
     /**
-     * Funcion de la clase
+     * Función de la clase
      * Hacer la cara inferior, una vez se tenga armado la cara blanca, las
      * aristas medias y la cruz amarilla alineada con los colores laterales
-     * esta funcion busca armar la cara amarilla alineando todo con sus
-     * repsectivos colores.
+     * esta función busca armar la cara amarilla alineando todo con sus
+     * respectivos colores.
      * @author Equipo 1
      */
     void makeInfFace()
     {
-        //Mientras que no este el color buscado en la posicion necesaria
+        //Mientras que no este el color buscado en la posición necesaria
         while(!(((blue[8]==5 || blue[8]==3 || blue[8]==2)&&(orange[6]==3 || orange[6]==5 || orange[6]==2)&&(yellow[2]==2 || yellow[2]==3 || yellow[2]==5)) && ((orange[8]==3 || orange[8]==4 || orange[8]==2)&&(green[6]==4 || green[6]==3 || green[6]==2)&&(yellow[8]==2 || yellow[8]==3 || yellow[8]==4)) && ((green[8]==4 || green[8]==6 || green[8]==2)&&(red[6]==6 || red[6]==4 || red[6]==2)&&(yellow[6]==4 || yellow[6]==6 || yellow[6]==2)) && ((red[8]==6 || red[8]==5 || red[8]==2)&&(blue[6]==5 || blue[6]==6 || blue[6]==2)&&(yellow[0]==2 || yellow[0]==5 || yellow[0]==6))))
         {
             if((blue[8]==5 || blue[8]==3 || blue[8]==2)&&(orange[6]==3 || orange[6]==5 || orange[6]==2)&&(yellow[2]==2 || yellow[2]==3 || yellow[2]==5))
@@ -1254,8 +1254,8 @@ struct Cube
         }
     }
     /**
-     * Funcion de la clase
-     * Esta funcion ejecuta en orden las funciones para
+     * Función de la clase
+     * Esta función ejecuta en orden las funciones para
      * armar el cubo Rubik.
      * @author Equipo 1
      */
@@ -1268,8 +1268,8 @@ struct Cube
         makeInfFace();
     }
     /**
-     * Funcion de la clase
-     * Funcion creada para randomizar un cubo, fue usado
+     * Función de la clase
+     * Función creada para randomizar un cubo, fue usado
      * para crear casos de prueba para el programa.
      * @author Equipo 1
      */
@@ -1303,22 +1303,23 @@ struct Cube
         }
     }
     /**
-     * Funcion de la clase
-     * Esta funcion permite alterar valores de cualquier cara del cubo
+     * Función de la clase
+     * Esta función permite alterar valores de cualquier cara del cubo
      * @author Equipo 1
      */
     void changeFace()
     {
-        //Strings para registrar distintas opciones y calificar si el valor introducido el valido
+    	setlocale(LC_ALL, "");
+        //Strings para registrar distintas opciones y calificar si el valor introducido es válido
         string option1 = "", option2 = "", option3 = "";
         do{
             system("cls");
-            cout<<"Â¿Que cara quieres cambiar?"<<endl
+            cout<<"¿Que cara quieres cambiar?"<<endl
             <<"1: Cara Blanca   2: Cara Amarilla    3: Cara Naranja"<<endl
             <<"4: Cara Verde    5: Cara Azul        6: Cara Roja"<<endl
             <<"7: No quiero cambiar una cara"<<endl;
             try{
-                //Verificar opcion valida
+                //Verificar opción válida
                 cin>>option1;
                 if(!isValidInt(option1)) throw option1;
                 if(stoi(option1)>7 || stoi(option1)<1)    throw option1;
@@ -1331,10 +1332,10 @@ struct Cube
                             change_num(white);
                             system("cls");
                             ptrFace(white);
-                            cout<<"Â¿Quieres cambiar otro numero de esta cara?"<<endl
+                            cout<<"¿Quieres cambiar otro numero de esta cara?"<<endl
                                 <<"1: Si 2: No"<<endl;
                             do{
-                                //Verificar opcion valida
+                                //Verificar opción válida
                                 try{
                                     cin>>option2;
                                     if(!isValidInt(option2)) throw option2;
@@ -1354,10 +1355,10 @@ struct Cube
                             change_num(yellow);
                             system("cls");
                             ptrFace(yellow);
-                            cout<<"Â¿Quieres cambiar otro numero de esta cara?"<<endl
+                            cout<<"¿Quieres cambiar otro numero de esta cara?"<<endl
                                 <<"1: Si 2: No"<<endl;
                             do{
-                                //Verificar opcion valida
+                                //Verificar opción válida
                                 try{
                                     cin>>option2;
                                     if(!isValidInt(option2)) throw option2;
@@ -1377,10 +1378,10 @@ struct Cube
                             change_num(orange);
                             system("cls");
                             ptrFace(orange);
-                            cout<<"Â¿Quieres cambiar otro numero de esta cara?"<<endl
+                            cout<<"¿Quieres cambiar otro numero de esta cara?"<<endl
                                 <<"1: Si 2: No"<<endl;
                             do{
-                                //Verificar opcion valida
+                                //Verificar opción válida
                                 try{
                                     cin>>option2;
                                     if(!isValidInt(option2)) throw option2;
@@ -1400,10 +1401,10 @@ struct Cube
                             change_num(green);
                             system("cls");
                             ptrFace(green);
-                            cout<<"Â¿Quieres cambiar otro numero de esta cara?"<<endl
+                            cout<<"¿Quieres cambiar otro numero de esta cara?"<<endl
                                 <<"1: Si 2: No"<<endl;
                             do{
-                                //Verificar opcion valida
+                                //Verificar opción válida
                                 try{
                                     cin>>option2;
                                     if(!isValidInt(option2)) throw option2;
@@ -1423,10 +1424,10 @@ struct Cube
                             change_num(blue);
                             system("cls");
                             ptrFace(blue);
-                            cout<<"Â¿Quieres cambiar otro numero de esta cara?"<<endl
+                            cout<<"¿Quieres cambiar otro numero de esta cara?"<<endl
                                 <<"1: Si 2: No"<<endl;
                             do{
-                                //Verificar opcion valida
+                                //Verificar opción válida
                                 try{
                                     cin>>option2;
                                     if(!isValidInt(option2)) throw option2;
@@ -1446,10 +1447,10 @@ struct Cube
                             change_num(red);
                             system("cls");
                             ptrFace(red);
-                            cout<<"Â¿Quieres cambiar otro numero de esta cara?"<<endl
+                            cout<<"¿Quieres cambiar otro numero de esta cara?"<<endl
                                 <<"1: Si 2: No"<<endl;
                             do{
-                                //Verificar opcion valida
+                                //Verificar opción válida
                                 try{
                                     cin>>option2;
                                     if(!isValidInt(option2)) throw option2;
@@ -1474,10 +1475,10 @@ struct Cube
             system("cls");
             if(option3 == "2")  break;
             prtCube();
-            cout<<"Â¿Quieres cambiar otra cara?"<<endl
+            cout<<"¿Quieres cambiar otra cara?"<<endl
                 <<"1: Si 2: No"<<endl;
             do{
-                //Verificar opcion valida
+                //Verificar opción válida
                  try{
                     cin>>option3;
                     if(!isValidInt(option3)) throw option3;
@@ -1491,10 +1492,10 @@ struct Cube
         system("cls");
     }
     /**
-     * Funcion de la clase
-     * Aqui se verificara si los datos introducidos para el cubo corresponden a un cubo verdadero
+     * Función de la clase
+     * Aquí se verificará si los datos introducidos para el cubo corresponden a un cubo verdadero
      * @author  Equipo 1
-     * @throw   invalid_argument    En caso de que se detecatra que el nuemero de colores no corresponde a un cubo real
+     * @throw   invalid_argument    En caso de que se detectara que el número de colores no corresponde a un cubo real
      */
     void checkcube()
     {
@@ -1509,11 +1510,11 @@ struct Cube
 
         for(int i=0; i<6;i++)
             t[i].join();
-        if(w!=8||b!=8||y!=8||g!=8||r!=8||o!=8)  throw invalid_argument("Los datos introducidos no correspondan a un cubo real");
+        if(w!=8||b!=8||y!=8||g!=8||r!=8||o!=8)  throw invalid_argument("Los datos introducidos no corresponden a un cubo real");
     }
     /**
-     * Funcion de la clase
-     * Imprime todas la caras de cubo indicando que cara es y sus valores
+     * Función de la clase
+     * Imprime todas las caras del cubo indicando que cara es y sus valores
      * @author Equipo 1
      */
     void prtCube()
@@ -1535,9 +1536,9 @@ struct Cube
     /**
      * Sobrecarga de la clase
      * Sobrecarga del operador cin para registrar todos los datos de los
-     * aputadores a las caras del cubo
-     * @author  Equipo 1
-     * @param   is          Acronimo de imput
+     * apuntadores a las caras del cubo
+     * @author Equipo 1
+     * @param   is          Acrónimo de input
      * @param   c           Corresponde a la variable de la clase
      */
     friend istream& operator >> (istream &is, Cube &c)
@@ -1554,8 +1555,8 @@ struct Cube
      * Sobrecarga de la clase
      * Sobrecarga del operador cout para imprimir todos los datos de
      * las caras de los arreglos en orden.
-     * @author  Equipo 1
-     * @param   os          Acronimo de output
+     * @author Equipo 1
+     * @param   os          Acrónimo de output
      * @param   c           Corresponde a la variable de la clase
      */
     friend ostream& operator << (ostream &os, Cube &c)
@@ -1578,9 +1579,11 @@ struct Cube
 };
 int main()
 {
-    //Creo un string para poder verificar luego si la opcion es correcta
+	setlocale(LC_ALL, "");
+    //Creo un string para poder verificar luego si la opción es correcta
     string option = "";
     bool bandera = true;
+    void (*PF1[2])(void)={ptrPasosConNotacion,ptrPasosSinNotacion};
     cout<<"Bienvenido a SYC un programa que te indica como resolver tu cubo Rubik paso por paso mediante el metodo de principiantes\n"<<endl
         <<"Para resolver tu cubo necesitas indicarme la posicion de los colores en las caras, recuerda que el color de la cara es indicado por el color del centro de la misma, a continuacion,veras una rubrica de como debes representar los colores:\n"<<endl;
     Cube micubo;
@@ -1592,41 +1595,42 @@ int main()
             {
                 while(true)
                 {
-                    //Verificar valor valido
+                    //Verificar valor válido
                     try
                     {
                         cin>>option;
-                        if(!isValidInt(option)) throw invalid_argument("Opcion invalida");
-                        if(stoi(option)>2||stoi(option)<1) throw invalid_argument("Opcion invalida");
+                        if(!isValidInt(option)) throw invalid_argument("Opción invalida");
+                        if(stoi(option)>2||stoi(option)<1) throw invalid_argument("Opción invalida");
                         if(stoi(option)==2){
                             bandera=true;
                         }
                         break;
                     }catch(invalid_argument &e)
                     {
-                        cout<<e.what()<<" reintroducela"<<endl;
+                        cout<<e.what()<<" reintrodúcela"<<endl;
                     }
                 }
             }
             if(bandera)
             {
                 cin>>micubo;
+                micubo.randCube();
                 bandera = false;
             }
             micubo.prtCube();
-            cout<<"Quieres cambiar algun valor de alguna cara?"<<endl
+            cout<<"¿Quieres cambiar algún valor de alguna cara?"<<endl
                 <<"1: Si 2: No"<<endl;
             while(true)
             {
                 try
                 {
                     cin>>option;
-                    if(!isValidInt(option)) throw invalid_argument("Opcion invalida");
-                    if(stoi(option)>2||stoi(option)<1) throw invalid_argument("Opcion invalida");
+                    if(!isValidInt(option)) throw invalid_argument("Opción invalida");
+                    if(stoi(option)>2||stoi(option)<1) throw invalid_argument("Opción invalida");
                     break;
                 }catch(invalid_argument &e)
                 {
-                    cout<<e.what()<<" reintroducela"<<endl;
+                    cout<<e.what()<<" reintrodúcela"<<endl;
                 }
             }
             if(option == "1"){
@@ -1642,11 +1646,11 @@ int main()
         }
     }
     micubo.solveCube();
-    cout<<"Quieres ver las instruccion con notacion o texto (si elijes notacion se te dara una rubrica para que la entiendas)"<<endl
-        <<"1. Notacion"<<endl
+    cout<<"¿Quieres ver las instrucciones con notación o texto (si elijes notación se te dará una rubrica para que la entiendas)?"<<endl
+        <<"1. Notación"<<endl
         <<"2. Texto"<<endl;
     do{
-        //Verificar valor valido
+        //Verificar valor válido
         try{
             cin>>option;
             if(!isValidInt(option)) throw option;
@@ -1656,25 +1660,22 @@ int main()
             option = "";
         }
     }while(!isValidInt(option));
-    switch(stoi(option))
-    {
-        case 1:
-            ptrPasosConNotacion();
-            break;
-        case 2:
-            ptrPasosSinNotacion();
-            break;
-    }
-    return 0;
+    /**
+    * Con apuntadores a funciones, se hace una llamada indirecta a los procedimientos dependiendo de la opción
+    * que se haya ingresado anteriormente, así entonces se llama a la función según el caso.
+    * @author   Equipo 1
+    */
+    (*PF1[stoi(option) - 1])();
 }
 /**
-* Imprime el menu para conocer la rubrica de colores y en que cara de color te encuentras
+* Imprime el menú para conocer la rúbrica de colores y en qué cara de color te encuentras
 * @author   Equipo 1    
 * @param    color        Una variable que permite nos permite imprimir en que cara nos encontramos dentro de un orden
 */
 void displayMenu(int color)
 {
-    cout<<"El orden de los colores se representa de arriba hacia abajo de izquierda a derecha como se indica a continuacion"<<endl
+	setlocale(LC_ALL, "");
+    cout<<"El orden de los colores se representa de arriba hacia abajo de izquierda a derecha como se indica a continuación"<<endl
         <<" -------"<<endl
         <<" |1|2|3|"<<endl
         <<" |4|5|6|"<<endl
@@ -1682,11 +1683,11 @@ void displayMenu(int color)
         <<"Rubrica de colores"<<endl
         <<"1 = Blanco   2 = Amarillo    3 = Naranja"<<endl
         <<"4 = Verde    5 = Azul        6 = Rojo"<<endl
-        <<"7 = Reintroducir una posicion\n"<<endl;
+        <<"7 = Reintroducir una posición\n"<<endl;
     switch(color)
     {
         case 0:
-            cout<<"Cara Blanca (se mira poniendo la cara azul debajo):"<<endl;
+            cout<<"Cara Blanca (Se mira poniendo la cara azul debajo):"<<endl;
             break;
         case 1:
             cout<<"Cara Azul (Teniendo la cara blanca arriba):"<<endl;
@@ -1706,13 +1707,14 @@ void displayMenu(int color)
     }
 }
 /**
- * Registra los datos de un arreglo, que en este caso seran las caras
- * de el cubo.
- * @author  Equipo 1
+* Registra los datos de un arreglo, que en este caso serán las caras
+ * del cubo.
+ * @author Equipo 1
  * @param   arr         corresponde a el apuntador de una cara del cubo
  */
 void wrtFace(int *arr)
 {
+	setlocale(LC_ALL, "");
     string color_num = "";
     int static color = 0;
     for(int i=0; i<9; i++)
@@ -1757,7 +1759,7 @@ void wrtFace(int *arr)
 	            arr[i]=stoi(color_num);
             }
 	    }catch(string &e){
-	    	cout<<"El valor \""<<e<<"\" no es valido, reintroducelo"<<endl;
+	    	cout<<"El valor \""<<e<<"\" no es válido, reintrodúcelo"<<endl;
 	    	i--;
             system("pause");
 		}
@@ -1767,19 +1769,20 @@ void wrtFace(int *arr)
 }
 /**
  * Permite cambiar un valor del arreglo en el que se encuentra
- * @author  Equipo 1
+ * @author Equipo 1
  * @param   arr         corresponde a el apuntador de una cara del cubo
  */
 void change_num(int *arr)
 {
+	setlocale(LC_ALL, "");
     string pos = "", color_num = "";
-    cout<<"Que posicion? ";
+    cout<<"¿Qué posición? ";
     do{
         try{
             cin>>pos;
             if(!isValidInt(pos))    throw pos;
             if(stoi(pos)<1 || stoi(pos)>9 || pos=="5")  throw pos;
-            cout<<"Introduce el nuevo numero:"<<endl;
+            cout<<"Introduce el nuevo número: "<<endl;
             do{
                 try{
                     cin>>color_num;
@@ -1796,8 +1799,8 @@ void change_num(int *arr)
     }while(!isValidInt(pos));
 }
 /**
- * Imprimir el arreglo de una cara viendose como una cara del cubo.
- * @author  Equipo 1
+ * Imprimir el arreglo de una cara viéndose como una cara del cubo.
+ * @author Equipo 1
  * @param   arr         corresponde a el apuntador de una cara del cubo
  */
 void ptrFace(int *arr)
@@ -1812,10 +1815,10 @@ void ptrFace(int *arr)
 }
 /**
  * Analiza si el string es un numero entero valido
- * @author  Equipo 1
+ * @author Equipo 1
  * @param   arr         corresponde a el apuntador de una cara del cubo
- * @return  <code>true</code> si es un entero valido
-*           <code>false</code> si es otra cosa
+ * @return <code>true</code> si es un entero valido
+ *           <code>false</code> si es otra cosa
  */
 bool isValidInt(string valid_numeroEnCadena)
 {
@@ -1830,9 +1833,9 @@ bool isValidInt(string valid_numeroEnCadena)
     return valido;
 }
 /**
- * Busca y contabiliza la cantidad de numeros del 1-6 que hay, dentro de el arreglo
+ * Busca y contabiliza la cantidad de números del 1-6 que hay, dentro del arreglo
  * que corresponde a una cara del cubo.
- * @author  Equipo 1
+ * @author Equipo 1
  * @param   arr         corresponde a el apuntador de una cara del cubo
  * @param   w           contara la cantidad de caras blancas
  * @param   b           contara la cantidad de caras azules
@@ -1882,24 +1885,25 @@ void searchNums(int arr[], int &w, int &b, int &y, int &g, int &r, int &o)
     }
 }
 /**
- * Imprimira los pasos se siguo mientras se armaba el cubo con intrucciones
+ * Imprimirá los pasos que siguió mientras se armaba el cubo con instrucciones
  * escritas de manera de que cualquiera lo pueda entender.
- * @author  Equipo 1
+ * @author Equipo 1
  */
 void ptrPasosSinNotacion()
 {
+	setlocale(LC_ALL, "");
     int j=0, pasosResumidos[500], aux=0;
     string numPasos = "";
     int k = pasosRepetidos(pasosResumidos);
 
-    cout<<"Â¿Cuantos pasos quieres que se desplieguen a la vez? (Cuando termines de hacerlos presiona cualqueir boton)"<<endl;
+    cout<<"¿Cuántos pasos quieres que se desplieguen a la vez? (Cuando termines de hacerlos presiona cualquier botón)"<<endl;
     do{
         try{
             cin>>numPasos;
             if(!isValidInt(numPasos)) throw numPasos;
             if(stoi(numPasos)<1)  throw numPasos;
         }catch(string &e){
-            cout<<"El valor \""<<e<<"\" no es valido, reintroducelo"<<endl;
+            cout<<"El valor \""<<e<<"\" no es válido, reintrodúcelo"<<endl;
             numPasos = "";
         }
     }while(!isValidInt(numPasos));
@@ -1973,12 +1977,13 @@ void ptrPasosSinNotacion()
     }
 }
 /**
- * Imprimira los pasos se siguo mientras se armaba el cubo con intrucciones
- * escritas con la notacion utilizada comunmente para pasos en el cubo rubik.
- * @author  Equipo 1
+ * Imprimirá los pasos que siguió mientras se armaba el cubo con instrucciones
+ * escritas con la notación utilizada comúnmente para pasos en el cubo Rubik.
+ * @author Equipo 1
  */
 void ptrPasosConNotacion()
 {
+	setlocale(LC_ALL, "");
     setlocale(LC_CTYPE, "Spanish");
     int j=0, l=0, pasosResumidos[500], aux;
     string numPasos = "";
@@ -1996,18 +2001,18 @@ void ptrPasosConNotacion()
         <<"|    | | | |     |     | | | |    |     | | |X| |  |   | |X| | |    |    |X|X|X| ->  | <- | | | |     |"<<endl
         <<"|    | | | |     |     |X|X|X|->  |     | | |X|    |   V |X| | |    |    |X|X|X|     |    | | | |     |"<<endl
         <<"------------------------------------------------------------------------------------------------------|"<<endl
-        <<"Cuando se dice en sentido horario se refiere a como si vieras la cara que estas girando de frente.\nSi la letra esta acompanada por el simbolo \' (prima) significa que va en direccion anti-horaria\n"<<endl;
+        <<"Cuando se dice en sentido horario se refiere a como si vieras la cara que estas girando de frente.\nSi la letra esta acompañada por el símbolo \' (prima) significa que va en dirección antihoraria\n"<<endl;
 
-    cout<<"En cuantos pasos quieres ir avanzando? (Cuando termines de hacerlos presiona cualquier boton)"<<endl;
+    cout<<"¿En cuántos pasos quieres ir avanzando? (Cuando termines de hacerlos presiona cualquier botón)"<<endl;
 
     do{
-        //Verificar valor valido
+        //Verificar valor válido
         try{
             cin>>numPasos;
             if(!isValidInt(numPasos)) throw numPasos;
             if(stoi(numPasos)<1)  throw numPasos;
         }catch(string &e){
-            cout<<"El valor \""<<e<<"\" no es valido, reintroducelo"<<endl;
+            cout<<"El valor \""<<e<<"\" no es válido, reintrodúcelo"<<endl;
             numPasos = "";
         }
     }while(!isValidInt(numPasos));
@@ -2080,11 +2085,11 @@ void ptrPasosConNotacion()
     }
 }
 /**
- * Resumira los pasos registrados, si hay 4 instrucciones iguales seguidas las borra devido
+ * Resumirá los pasos registrados, si hay 4 instrucciones iguales seguidas las borra debido
  * a que hacer 4 movimientos iguales seguidos es equivalente a no mover nada.
- * @author  Equipo 1
- * @param   pasosResumidos  Un arreglo para guardar los pasos depsues de haberse resumido al maximo
- * @return  k               Que corresponde a la cantidad de pasos que tiene el nuevo arreglo
+ * @author Equipo 1
+ * @param   pasosResumidos Un arreglo para guardar los pasos después de haberse resumido al máximo
+ * @return k               Que corresponde a la cantidad de pasos que tiene el nuevo arreglo
  */
 int pasosRepetidos(int pasosResumidos[])
 {
