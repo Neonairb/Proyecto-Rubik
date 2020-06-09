@@ -1583,6 +1583,7 @@ int main()
     //Creo un string para poder verificar luego si la opción es correcta
     string option = "";
     bool bandera = true;
+    //Apuntador a funciones
     void (*PF1[2])(void)={ptrPasosConNotacion,ptrPasosSinNotacion};
     cout<<"Bienvenido a SYC un programa que te indica como resolver tu cubo Rubik paso por paso mediante el metodo de principiantes\n"<<endl
         <<"Para resolver tu cubo necesitas indicarme la posicion de los colores en las caras, recuerda que el color de la cara es indicado por el color del centro de la misma, a continuacion,veras una rubrica de como debes representar los colores:\n"<<endl;
@@ -1616,7 +1617,7 @@ int main()
                 cin>>micubo;
                 bandera = false;
             }
-            micubo.prtCube();
+            cout<<micubo;
             cout<<"¿Quieres cambiar algún valor de alguna cara?"<<endl
                 <<"1: Si 2: No"<<endl;
             while(true)
