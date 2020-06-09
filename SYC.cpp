@@ -35,7 +35,7 @@ struct Cube
     * apuntadores de la clase apunten a esa memoria, cada uno de los apuntadores
     * simbolizarán la cara del cubo del nombre que se les dio y su índice
     * corresponderá a la posición de los colores de esa cara.
-    * @author Equipo 1
+    * @author Raul Pineda
     * @throw bad_alloc si la memoria no se pudo reservar correctamente
     */
 	Cube(){
@@ -58,7 +58,8 @@ struct Cube
      * azul por debajo, o bien mirando la cara naranja de frente y rotarla 
      * hacia la derecha, se aprovecha el hecho de que al hacer el mismo 
      * movimiento 3 veces es como si se hiciera el movimiento contrario 1 vez.
-     * @author Equipo 1
+     * @author Brian Acosta
+     * @author Raul Pineda
      */
 	void rotRightDown()
     {
@@ -103,7 +104,8 @@ struct Cube
      * azul por debajo, o bien mirando la cara naranja de frente y rotarla 
      * hacia la derecha, se aprovecha el hecho de que al hacer el mismo 
      * movimiento 3 veces es como si se hiciera el movimiento contrario 1 vez.
-     * @author Equipo 1
+     * @author Brian Acosta
+     * @author Raul Pineda
      */
     void rotRightUp()
     {
@@ -118,7 +120,8 @@ struct Cube
      * cara azul por debajo, o bien mirando la cara roja de frente y rotarla
      * hacia la derecha, esto se logra cambiando los datos de los arreglos
      * siguiendo la aritmética del cubo.
-     * @author Equipo 1
+     * @author Brian Acosta
+     * @author Raul Pineda
      */
     void rotLeftDown()
     {
@@ -163,7 +166,8 @@ struct Cube
      * azul por debajo, o bien mirando la cara roja de frente y rotarla 
      * hacia la izquierda, se aprovecha el hecho de que al hacer el mismo 
      * movimiento 3 veces es como si se hiciera el movimiento contrario 1 vez.
-     * @author Equipo 1
+     * @author Brian Acosta
+     * @author Raul Pineda
      */
     void rotLeftUp()
     {
@@ -178,7 +182,8 @@ struct Cube
      * cara azul por debajo, o bien mirando la cara verde de frente y rotarla
      * hacia la izquierda, esto se logra cambiando los datos de los arreglos
      * siguiendo la aritmética del cubo.
-     * @author Equipo 1
+     * @author Renata Parra 
+     * @author Gabriel Valenzuela
      */
     void rotUpRight()
     {
@@ -223,7 +228,8 @@ struct Cube
      * azul por debajo, o bien mirando la cara verde de frente y rotarla 
      * hacia la derecha, se aprovecha el hecho de que al hacer el mismo 
      * movimiento 3 veces es como si se hiciera el movimiento contrario 1 vez.
-     * @author Equipo 1
+     * @author Renata Parra 
+     * @author Gabriel Valenzuela
      */
     void rotUpLeft()
     {
@@ -238,7 +244,8 @@ struct Cube
      * cara azul por debajo, o bien mirando la cara azúl de frente y rotarla
      * hacia la derecha, esto se logra cambiando los datos de los arreglos
      * siguiendo la aritmética del cubo.
-     * @author Equipo 1
+     * @author Renata Parra 
+     * @author Gabriel Valenzuela
      */
     void rotDownRight()
     {
@@ -283,7 +290,8 @@ struct Cube
      * azúl por debajo, o bien mirando la cara azúl de frente y rotarla 
      * hacia la izquierda, se aprovecha el hecho de que al hacer el mismo 
      * movimiento 3 veces es como si se hiciera el movimiento contrario 1 vez.
-     * @author Equipo 1
+     * @author Renata Parra 
+     * @author Gabriel Valenzuela
      */
     void rotDownLeft()
     {
@@ -296,7 +304,8 @@ struct Cube
      * En esta función se simulará el movimiento de girar la cara frontal
      * hacia la derecha teniendo la cara blanca de frente, esto se logra 
      * cambiando los datos de los arreglos siguiendo la aritmética del cubo.
-     * @author Equipo 1
+     * @author Laura Lopez 
+     * @author Bryan Porras
      */
     void rotFaceForwRight()
     {
@@ -340,7 +349,8 @@ struct Cube
      * hacia la izquierda, esto viéndose de frente la cara blanca del cubo, 
      * se aprovecha el hecho de que al hacer el mismo movimiento 3 veces es 
      * como si se hiciera el movimiento contrario 1 vez.
-     * @author Equipo 1
+     * @author Laura Lopez 
+     * @author Bryan Porras
      */
     void rotFaceForwLeft()
     {
@@ -355,7 +365,8 @@ struct Cube
      * cara azul por debajo, o bien mirando la cara amarilla de frente y rotarla
      * hacia la izquierda, esto se logra cambiando los datos de los arreglos
      * siguiendo la aritmética del cubo.
-     * @author Equipo 1
+     * @author Laura Lopez 
+     * @author Bryan Porras
      */
     void rotFaceBackRight()
     {
@@ -400,7 +411,8 @@ struct Cube
      * azul por debajo, o bien mirando la cara amarilla de frente y rotarla 
      * hacia la derecha, se aprovecha el hecho de que al hacer el mismo 
      * movimiento 3 veces es como si se hiciera el movimiento contrario 1 vez.
-     * @author Equipo 1
+     * @author Laura Lopez 
+     * @author Bryan Porras
      */
     void rotFaceBackLeft()
     {
@@ -414,7 +426,8 @@ struct Cube
      * empezar a trabajar en el cubo con algoritmos, no es necesario que este 
      * alineada puesto que una función se encargará de eso después de tener 
      * la cruz hecha.
-     * @author Equipo 1
+     * @author Brian Acosta
+     * @author Raul Pineda
      */
     void makeSupCross()
     {
@@ -496,7 +509,8 @@ struct Cube
      * en caso de no ser así sigue un algoritmo que depende de la posición 
      * de ciertos colores y utiliza los movimientos anteriormente programados
      * para realizarlos.
-     * @author Equipo 1
+     * @author Brian Acosta
+     * @author Raul Pineda
      */
     void permutateSupCross()
     {
@@ -604,7 +618,8 @@ struct Cube
      * función buscara llegar a tener la cara blanca armada y alineada 
      * con sus respectivos colores siguiendo algoritmos usando los
      * movimientos anteriormente programados.
-     * @author Equipo 1
+     * @author Brian Acosta
+     * @author Raul Pineda
      */
     void makeSupFace()
     {
@@ -768,7 +783,7 @@ struct Cube
      * media de los colores laterales del cubo sin alterar la cara armada, 
      * esto se consigue con algoritmos hechos en base a la posición de los 
      * colores con los movimientos anteriormente programados
-     * @author Equipo 1
+     * @author Brian Acosta
      */
     void makeLatEdge()
     {
@@ -939,7 +954,7 @@ struct Cube
      * medias busca llegar a tener una cruz amarilla sin alterar lo que
      * ya se tiene armado, siguiendo algoritmos que dependen de la posición
      * de los colores usando lo movimientos anteriormente programados.
-     * @author Equipo 1
+     * @author Brian Acosta
      */
     void makeInfCross()
     {
@@ -1023,7 +1038,7 @@ struct Cube
      * ser así sigue un algoritmo que depende de la posición de ciertos colores, 
      * estos no alteran las partes ya armadas del cubo y utiliza los 
      * movimientos anteriormente programados para realizarlos.
-     * @author Equipo 1
+     * @author Brian Acosta
      */
     void permutateInfCross()
     {
@@ -1130,7 +1145,7 @@ struct Cube
      * aristas medias y la cruz amarilla alineada con los colores laterales
      * esta función busca armar la cara amarilla alineando todo con sus
      * respectivos colores.
-     * @author Equipo 1
+     * @author Brian Acosta
      */
     void makeInfFace()
     {
@@ -1257,7 +1272,7 @@ struct Cube
      * Función de la clase
      * Esta función ejecuta en orden las funciones para
      * armar el cubo Rubik.
-     * @author Equipo 1
+     * @author Brian Acosta
      */
     void solveCube()
     {
@@ -1271,7 +1286,8 @@ struct Cube
      * Función de la clase
      * Función creada para randomizar un cubo, fue usado
      * para crear casos de prueba para el programa.
-     * @author Equipo 1
+     * @author Renata Parra
+     * @author Gabriel Valenzuela  
      */
     void randCube()
     {
@@ -1305,7 +1321,8 @@ struct Cube
     /**
      * Función de la clase
      * Esta función permite alterar valores de cualquier cara del cubo
-     * @author Equipo 1
+     * @author Brian Acosta
+     * @author Raul Pineda
      */
     void changeFace()
     {
@@ -1494,7 +1511,8 @@ struct Cube
     /**
      * Función de la clase
      * Aquí se verificará si los datos introducidos para el cubo corresponden a un cubo verdadero
-     * @author  Equipo 1
+     * @author  Brian Acosta
+     * @author  Raul Pineda
      * @throw   invalid_argument    En caso de que se detectara que el número de colores no corresponde a un cubo real
      */
     void checkcube()
@@ -1515,7 +1533,8 @@ struct Cube
     /**
      * Función de la clase
      * Imprime todas las caras del cubo indicando que cara es y sus valores
-     * @author Equipo 1
+     * @author Renata Parra
+     * @author Gabriel Valenzuela
      */
     void prtCube()
     {
@@ -1537,7 +1556,8 @@ struct Cube
      * Sobrecarga de la clase
      * Sobrecarga del operador cin para registrar todos los datos de los
      * apuntadores a las caras del cubo
-     * @author Equipo 1
+     * @author Brian Acosta
+     * @author Raul Pineda
      * @param   is          Acrónimo de input
      * @param   c           Corresponde a la variable de la clase
      */
@@ -1555,7 +1575,8 @@ struct Cube
      * Sobrecarga de la clase
      * Sobrecarga del operador cout para imprimir todos los datos de
      * las caras de los arreglos en orden.
-     * @author Equipo 1
+     * @author Renata Parra
+     * @author Gabriel Valenzuela
      * @param   os          Acrónimo de output
      * @param   c           Corresponde a la variable de la clase
      */
@@ -1669,7 +1690,8 @@ int main()
 }
 /**
 * Imprime el menú para conocer la rúbrica de colores y en qué cara de color te encuentras
-* @author   Equipo 1    
+* @author   Laura Lopez
+* @author   Bryan Porras
 * @param    color        Una variable que permite nos permite imprimir en que cara nos encontramos dentro de un orden
 */
 void displayMenu(int color)
@@ -1709,7 +1731,8 @@ void displayMenu(int color)
 /**
 * Registra los datos de un arreglo, que en este caso serán las caras
  * del cubo.
- * @author Equipo 1
+ * @author Brian Acosta
+ * @author Raul Pineda
  * @param   arr         corresponde a el apuntador de una cara del cubo
  */
 void wrtFace(int *arr)
@@ -1769,7 +1792,8 @@ void wrtFace(int *arr)
 }
 /**
  * Permite cambiar un valor del arreglo en el que se encuentra
- * @author Equipo 1
+ * @author Brian Acosta
+ * @author Raul Pineda
  * @param   arr         corresponde a el apuntador de una cara del cubo
  */
 void change_num(int *arr)
@@ -1800,7 +1824,8 @@ void change_num(int *arr)
 }
 /**
  * Imprimir el arreglo de una cara viéndose como una cara del cubo.
- * @author Equipo 1
+ * @author Renata Parra
+ * @author Gabriel Valenzuela
  * @param   arr         corresponde a el apuntador de una cara del cubo
  */
 void ptrFace(int *arr)
@@ -1835,7 +1860,8 @@ bool isValidInt(string valid_numeroEnCadena)
 /**
  * Busca y contabiliza la cantidad de números del 1-6 que hay, dentro del arreglo
  * que corresponde a una cara del cubo.
- * @author Equipo 1
+ * @author Brian Acosta
+ * @author Raul Pineda
  * @param   arr         corresponde a el apuntador de una cara del cubo
  * @param   w           contara la cantidad de caras blancas
  * @param   b           contara la cantidad de caras azules
